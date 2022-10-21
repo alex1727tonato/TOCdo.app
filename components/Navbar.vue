@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vs-navbar v-model="active" center-collapsed>
+    <vs-navbar v-model="active">
       <template #right>
         <a-dropdown>
           <a-menu slot="overlay">
@@ -23,9 +23,11 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  props: {
+    value: { type: Boolean, required: true },
+  },
   data: () => ({
     active: 'home',
-    activeSidebar: false
   })
 })
 </script>
