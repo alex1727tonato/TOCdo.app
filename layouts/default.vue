@@ -1,17 +1,17 @@
 <template>
   <div>
-    <header class="bg-amber-400 p-2">
-      <h2><Navbar v-model="activar" /></h2>
+    <header class="bg-amber-400 basis-1/6" style="height: 64px;">
+      <Navbar v-model="activar" />
     </header>
 
-    <div class="bg-white my-5 w-full flex space-y-4 flex-row md:space-x-4 md:space-y-0">
+    <div class="bg-white m-0 basis-4/6">
       <Sidebar />
-      <main id="content" class="md:w-full lg:w-full px-5 py-2">
+      <main id="content" class="p-0 m-0" style="margin-left: 0px; margin-top: 0px;">
         <nuxt />
       </main>
     </div>
 
-    <footer class="bg-slate-800 p-3">
+    <footer class="bg-slate-800 w-full h-full basis-1/6">
       <p class="text-center">
         TOC Do ©2020 Created by TOC Systems
       </p>

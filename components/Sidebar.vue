@@ -1,10 +1,9 @@
 <template>
   <vs-sidebar
     v-model="active"
-    class="min-h-screen"
     hover-expand
     reduce
-    relative
+    absolute
     open
   >
     <template #logo>
