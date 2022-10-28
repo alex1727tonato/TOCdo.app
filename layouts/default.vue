@@ -1,12 +1,12 @@
 <template>
   <div>
-    <header class="bg-amber-400 basis-1/6" style="height: 64px;">
-      <Navbar v-model="activar" />
+    <Sidebar />
+    <header class="bg-amber-400 basis-1/6" style="height: 44.4px;">
+      <Navbar />
     </header>
 
-    <div class="bg-white m-0 basis-4/6">
-      <Sidebar />
-      <main id="content" class="p-0 m-0" style="margin-left: 0px; margin-top: 0px;">
+    <div id="content" class="bg-white min-h-screen basis-4/6" :style="{ marginLeft: margen }">
+      <main class="p-3">
         <nuxt />
       </main>
     </div>
@@ -30,21 +30,14 @@ export default Vue.extend({
   data: () => ({
     activar: false,
   }),
-  mounted () {
-    this.mostrar()
-  },
-  methods: {
-    mostrar () {
-      // const clientWidth = this.$refs.sideBar?.$el.__vue__._props.open
-      const sideBarWidth = document.getElementById('sideBar')?.getBoundingClientRect().width
-      const contenWidth = document.getElementById('content')?.getBoundingClientRect().width
-      const aside = document.getElementById('aside')?.getBoundingClientRect().width
-      console.log('Ancho sidebar', sideBarWidth)
-      console.log('Ancho content', contenWidth)
-      console.log('Ancho aside', aside)
-    }
+  computed: {
+    margen () {
+      let contenWidth = null
+      if (typeof document !== 'undefined') {
+        contenWidth = document.getElementById('content')?.getBoundingClientRect().width
+      }
+      return this.$store.state.sidebar.showSidebar && contenWidth as any > 600 ? '260px' : '0px'
+    },
   }
 })
 </script>
-<style>
-</style>

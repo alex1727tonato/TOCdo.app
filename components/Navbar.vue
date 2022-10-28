@@ -1,5 +1,10 @@
 <template>
   <vs-navbar v-model="active">
+    <template #left>
+      <vs-button flat icon @click="cambio">
+        <a-icon type="menu" />
+      </vs-button>
+    </template>
     <template #right>
       <a-dropdown>
         <a-menu slot="overlay">
@@ -21,11 +26,13 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  props: {
-    value: { type: Boolean, required: true },
-  },
   data: () => ({
     active: 'home',
-  })
+  }),
+  methods: {
+    cambio () {
+      this.$store.commit('sidebar/setShowSidebar')
+    }
+  }
 })
 </script>

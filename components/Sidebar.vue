@@ -1,10 +1,7 @@
 <template>
   <vs-sidebar
     v-model="active"
-    hover-expand
-    reduce
-    absolute
-    open
+    :open.sync="cerrar"
   >
     <template #logo>
       <img src="/icon-tocdo.png" alt="" width="400">
@@ -77,11 +74,18 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  props: {
-    value: { type: Boolean, required: true },
-  },
   data: () => ({
-    active: 'home',
-  })
+    active: 'home'
+  }),
+  computed: {
+    cerrar: {
+      set () {
+        this.$store.commit('sidebar/setShowSidebar')
+      },
+      get () {
+        return this.$store.state.sidebar.showSidebar
+      },
+    },
+  }
 })
 </script>
