@@ -16,6 +16,11 @@ export default {
     ]
   },
 
+  // Middleware aplicativo
+  router: {
+    middleware: ['auth'],
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
