@@ -1,19 +1,23 @@
 <template>
   <div>
-    <Sidebar />
-    <header class="bg-amber-400 basis-1/6" style="height: 44.4px;">
+    <header style="height: 44.4px;">
       <Navbar />
     </header>
 
-    <div id="content" class="bg-white min-h-screen basis-4/6" :style="{ marginLeft: margen }">
+    <div
+      id="content"
+      class="bg-white min-h-screen"
+      :style="{ marginLeft: margenContenido }"
+    >
+      <Sidebar />
       <main class="p-3">
         <nuxt />
       </main>
     </div>
 
-    <footer class="bg-slate-800 w-full h-full basis-1/6">
+    <footer class="bg-slate-800 w-full h-full">
       <p class="text-center">
-        TOC Do ©2020 Created by TOC Systems
+        TOC Do ©2022 Created by TOC Systems
       </p>
     </footer>
   </div>
@@ -27,16 +31,17 @@ import Sidebar from '~/components/Sidebar.vue'
 export default Vue.extend({
   name: 'DefaultLayout',
   components: { Navbar, Sidebar },
-  data: () => ({
-    activar: false,
-  }),
   computed: {
-    margen () {
-      let contenWidth = null
+    margenContenido () {
+      let anchoContenido = null
       if (typeof document !== 'undefined') {
-        contenWidth = document.getElementById('content')?.getBoundingClientRect().width
+        anchoContenido = document.getElementById('content')
+          ?.getBoundingClientRect().width
       }
-      return this.$store.state.sidebar.showSidebar && contenWidth as any > 600 ? '260px' : '0px'
+      return this.$store.state.sidebar.showSidebar &&
+      anchoContenido as any > 600
+        ? '260px'
+        : '0px'
     },
   }
 })

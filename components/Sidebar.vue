@@ -1,7 +1,6 @@
 <template>
   <vs-sidebar
-    v-model="active"
-    :open.sync="cerrar"
+    :open.sync="activar"
   >
     <template #logo>
       <img src="/icon-tocdo.png" alt="" width="400">
@@ -74,11 +73,8 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  data: () => ({
-    active: 'home'
-  }),
   computed: {
-    cerrar: {
+    activar: {
       set () {
         this.$store.commit('sidebar/setShowSidebar')
       },

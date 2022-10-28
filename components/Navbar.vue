@@ -1,7 +1,7 @@
 <template>
-  <vs-navbar v-model="active">
+  <vs-navbar>
     <template #left>
-      <vs-button flat icon @click="cambio">
+      <vs-button flat icon @click="activarSidebar">
         <a-icon type="menu" />
       </vs-button>
     </template>
@@ -26,11 +26,8 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  data: () => ({
-    active: 'home',
-  }),
   methods: {
-    cambio () {
+    activarSidebar () {
       this.$store.commit('sidebar/setShowSidebar')
     }
   }
