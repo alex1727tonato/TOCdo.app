@@ -19,13 +19,13 @@
             >
               <a-form-model-item
                 label="Usuario"
-                html-for="user"
-                prop="user"
+                html-for="username"
+                prop="username"
                 :rules="{ required: true, message: 'El campo es requerido' }"
               >
                 <a-input
-                  id="user"
-                  v-model="form.user"
+                  id="username"
+                  v-model="form.username"
                   placeholder="Ingrese el usuario"
                 />
                 <!-- <vs-input v-model="form.user" success style="width: 100% !important;">
@@ -61,16 +61,6 @@
               >
                 Iniciar sesión
               </a-button> -->
-              <!-- <vs-button
-                color="rgb(59,222,200)"
-                gradient
-                html-type="submit"
-                block
-                :active="active == 6"
-                @click="active = 6"
-              >
-                Iniciar sesión
-              </vs-button> -->
               <vs-button
                 style="margin: 0px !important;"
                 gradient
@@ -98,13 +88,13 @@
         </div>
       </div>
     </div>
-    <vs-dialog v-model="active" blur>
+    <!-- <vs-dialog v-model="active" blur>
       <template #header>
         <h4 class="not-margin">
           Welcome to <b>Vuesax</b>
         </h4>
       </template>
-    </vs-dialog>
+    </vs-dialog> -->
   </div>
 </template>
 
@@ -117,15 +107,27 @@ export default Vue.extend({
     isLoading: false,
     active: false,
     form: {
-      user: '',
+      username: '',
       password: '',
     }
   }),
   methods: {
     onSubmit () {
-      (this.$refs.formModel as any).validate((valid: boolean) => {
+      (this.$refs.formModel as any).validate(async (valid: boolean) => {
         if (!valid) {
           return notificacion(this, 'warn', 'top-center', 'Complete los campos del formulario')
+        }
+        const loading = this.$vs.loading({
+          type: 'points'
+        })
+        try {
+          console.log('INICIANDO')
+          await this.$store.dispatch('auth/login', this.form)
+          this.$router.replace('/')
+        } catch (error) {
+          console.log(error)
+        } finally {
+          loading.close()
         }
       })
     },

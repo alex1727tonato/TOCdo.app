@@ -1,8 +1,9 @@
 import { Middleware } from '@nuxt/types'
 
-const middleware: Middleware = ({ store, redirect, route: { path } }) => {
+const middleware: Middleware = async ({ store, redirect, route: { path } }) => {
   console.log('VALIDANDO SESION')
-  if (store.getters['auth/validSesion'] === true) {
+  // console.log(store.dispatch('auth/validSesion'))
+  if (await store.dispatch('auth/validSesion') === true) {
     if (path.includes('/login')) {
       redirect('/')
     }
