@@ -1,7 +1,5 @@
 <template>
-  <vs-sidebar
-    :open.sync="activar"
-  >
+  <vs-sidebar :open.sync="activar">
     <template #logo>
       <img src="/icon-tocdo.png" alt="" width="400">
     </template>
@@ -72,6 +70,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   computed: {
     activar: {

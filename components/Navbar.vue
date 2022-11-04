@@ -1,4 +1,4 @@
-<template>
+  <template>
   <vs-navbar>
     <template #left>
       <vs-button flat icon @click="activarSidebar">
