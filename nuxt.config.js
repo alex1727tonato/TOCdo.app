@@ -1,4 +1,7 @@
+const API = 'http://localhost:3001'
+
 export default {
+  target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'APP1',
@@ -14,6 +17,11 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  // Middleware aplicativo
+  router: {
+    middleware: ['auth'],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -43,13 +51,17 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+  axios: { proxy: true, progress: false },
+  proxy: {
+    '/api/': {
+      target: API,
+      pathRewrite: { '^/api/': '' }
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
