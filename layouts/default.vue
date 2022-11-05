@@ -1,13 +1,12 @@
 <template>
   <div>
-    <header style="height: 44.4px;">
+    <header style="height: 4rem;">
       <Navbar />
     </header>
-
     <div
       id="content"
-      class="bg-white min-h-screen"
-      :style="{ marginLeft: margenContenido }"
+      class="contenido mr-5"
+      :style="{ marginLeft: margenContenido, backgroundColor: 'rgb(241 245 249)'}"
     >
       <Sidebar />
       <main class="p-3">
@@ -15,7 +14,7 @@
       </main>
     </div>
 
-    <footer class="bg-slate-800 w-full h-full">
+    <footer class="bg-slate-800">
       <p class="text-center">
         TOC Do ©2022 Created by TOC Systems
       </p>

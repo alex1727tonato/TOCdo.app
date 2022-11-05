@@ -1,3 +1,4 @@
+import { Modal } from 'ant-design-vue'
 
 export function getIcon (tipo: string) {
   switch (tipo) {
@@ -46,5 +47,16 @@ export function notificacion (
     position,
     text,
     duration
+  })
+}
+
+export function mostrarError (error: any, titulo: string = 'Proceso fallido') {
+  const mensaje = error.response
+    ? error.response.data.message || error.response.data
+    : 'Se produjo un error.'
+  Modal.error({
+    title: titulo,
+    content: mensaje,
+    okType: 'danger',
   })
 }

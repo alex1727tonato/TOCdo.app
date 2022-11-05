@@ -1,4 +1,4 @@
-  <template>
+<template>
   <vs-navbar>
     <template #left>
       <vs-button flat icon @click="activarSidebar">
@@ -11,7 +11,7 @@
           <a-menu-item key="1">
             <a-icon type="info-circle" /> Información
           </a-menu-item>
-          <a-menu-item key="2">
+          <a-menu-item key="2" @click="cerrarSesion()">
             <a-icon type="logout" /> Cerrar Sesión
           </a-menu-item>
         </a-menu>
@@ -29,6 +29,10 @@ export default Vue.extend({
   methods: {
     activarSidebar () {
       this.$store.commit('sidebar/setShowSidebar')
+    },
+    async cerrarSesion () {
+      await this.$store.dispatch('auth/cerrarSesion')
+      location.href = '/login'
     }
   }
 })

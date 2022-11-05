@@ -28,17 +28,6 @@
                   v-model="form.username"
                   placeholder="Ingrese el usuario"
                 />
-                <!-- <vs-input v-model="form.user" success style="width: 100% !important;">
-                  <template #icon>
-                    <a-icon type="user" />
-                  </template>
-                </vs-input>
-                <vs-input
-                  v-model="form.user"
-                  primary
-                  state="primary"
-                  placeholder="Primary"
-                /> -->
               </a-form-model-item>
               <a-form-model-item
                 label="Contraseña"
@@ -52,19 +41,9 @@
                   placeholder="Ingrese la contraseña"
                 />
               </a-form-model-item>
-              <!-- <a-button
-                :loading="isLoading"
-                type="primary"
-                html-type="submit"
-                block
-                shape="round"
-              >
-                Iniciar sesión
-              </a-button> -->
               <vs-button
                 style="margin: 0px !important;"
                 gradient
-                :loading="isLoading"
                 color="#b094ec"
                 block
                 circle
@@ -88,24 +67,17 @@
         </div>
       </div>
     </div>
-    <!-- <vs-dialog v-model="active" blur>
-      <template #header>
-        <h4 class="not-margin">
-          Welcome to <b>Vuesax</b>
-        </h4>
-      </template>
-    </vs-dialog> -->
   </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import { notificacion } from '@/assets/useFull'
+import { mostrarError, notificacion } from '@/assets/useFull'
 
 export default Vue.extend({
+  name: 'VistaLogin',
+  layout: 'empty',
   data: () => ({
-    isLoading: false,
-    active: false,
     form: {
       username: '',
       password: '',
@@ -121,11 +93,10 @@ export default Vue.extend({
           type: 'points'
         })
         try {
-          console.log('INICIANDO')
           await this.$store.dispatch('auth/login', this.form)
-          this.$router.replace('/')
+          this.$router.push('/')
         } catch (error) {
-          console.log(error)
+          mostrarError(error)
         } finally {
           loading.close()
         }

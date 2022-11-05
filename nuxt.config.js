@@ -4,7 +4,7 @@ export default {
   target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'APP1',
+    title: 'TOCdo',
     htmlAttrs: {
       lang: 'en'
     },
