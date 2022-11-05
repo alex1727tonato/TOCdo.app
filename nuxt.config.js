@@ -1,7 +1,10 @@
+const API = 'http://localhost:3001'
+
 export default {
+  target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'APP1',
+    title: 'TOCdo',
     htmlAttrs: {
       lang: 'en'
     },
@@ -16,6 +19,11 @@ export default {
     ]
   },
 
+  // Middleware aplicativo
+  router: {
+    middleware: ['auth'],
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
@@ -26,7 +34,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/ant-desing.js' },
-    { src: '@/plugins/vuesax.ts' },
+    { src: '@/plugins/vuesax.ts', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,13 +51,17 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+  axios: { proxy: true, progress: false },
+  proxy: {
+    '/api/': {
+      target: API,
+      pathRewrite: { '^/api/': '' }
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
