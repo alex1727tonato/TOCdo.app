@@ -12,9 +12,7 @@ export type Auth = ReturnType<typeof state>
 export const getters: GetterTree<Auth, {}> = {
   validSesion: state => {
     const token = state.token
-    console.log(token)
     if (!token) {
-      console.log('entre al if')
       return false
     } else {
       // const today = moment()
@@ -35,14 +33,12 @@ export const mutations: MutationTree<Auth> = {
 export const actions: ActionTree<Auth, Auth> = {
   async login ({ commit }, data) {
     const dataUser = await this.$axios.$post('/api/auth/user', data)
-    console.log(dataUser)
-    console.log('TOKEN: ', dataUser.token)
     this.$cookies.set('katggadr', dataUser.token)
     this.$axios.setToken(dataUser.token)
     commit('setToken', dataUser.token)
     return dataUser
   },
-  logout ({ commit }) {
+  cerrarSesion ({ commit }) {
     commit('setToken', '')
     this.$cookies.remove('katggadr', {
       path: '/',
@@ -52,9 +48,7 @@ export const actions: ActionTree<Auth, Auth> = {
   validSesion () {
     // const token = state.token
     const token = this.$cookies.get('katggadr')
-    console.log(token)
     if (!token) {
-      console.log('entre al if')
       return false
     } else {
       // const today = moment()
