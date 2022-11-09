@@ -46,7 +46,6 @@
                 color="#b094ec"
                 block
                 circle
-                @click="active = !active"
               >
                 <p class="text-base m-0">
                   Iniciar sesión
