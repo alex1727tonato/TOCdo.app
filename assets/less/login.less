@@ -14,9 +14,45 @@
     border-radius: 2rem;
     height: 75%;
     width: 75%;
+    
+    @media (max-width: 640px) {
+        height: 100%;
+        width: 100%;
+        border-radius: 0px;
+    }
    }
 }
 
 .contenido {
     min-height: calc(100vh - 5.5rem);
+}
+
+.background {
+    background-image: url(/Fondo6.png);
+    background-size: 100% 100%;
+
+    @media (max-width: 768px) {
+        background-image: none;
+        background-color: white;
+    }
+}
+
+.form {
+    flex-basis: 44%;
+
+    @media (max-width: 768px) {
+        flex-basis: 100%;
+    }
+}
+
+.image {
+    flex-basis: 56%;
+    
+    @media (max-width: 1024px) {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        flex-basis: 0%;
+    }
 }

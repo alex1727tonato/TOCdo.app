@@ -2,11 +2,10 @@
   <div class="login">
     <div class="container-login">
       <div
-        class="flex flex-col lg:flex-row items-center w-full h-full sm:bg-none rounded-2xl"
-        style="background-image: url(/Fondo6.png); background-size: 100% 100%;"
+        class="flex flex-row items-center w-full h-full rounded-2xl background"
       >
-        <div style="flex-basis: 44%;">
-          <div class="w-3/5 m-auto p-5">
+        <div class="form">
+          <div class="lg:w-4/6 md:w-5/6 m-auto p-5">
             <p class="font-sans text-3xl font-semibold text-black mb-12">
               Inicio de sesión
             </p>
@@ -56,7 +55,7 @@
             </a-form-model>
           </div>
         </div>
-        <div style="flex-basis: 56%;">
+        <div class="image">
           <div class="w-2/3 m-auto p-5">
             <img
               src="/icon.png"

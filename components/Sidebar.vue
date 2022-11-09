@@ -1,5 +1,5 @@
 <template>
-  <vs-sidebar :open.sync="activar">
+  <vs-sidebar :open.sync="activar" style="border-radius: 0px">
     <template #logo>
       <img src="/icon-tocdo.png" alt="" width="400">
     </template>
