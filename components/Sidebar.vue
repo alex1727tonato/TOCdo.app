@@ -3,68 +3,40 @@
     <template #logo>
       <img src="/icon-tocdo.png" alt="" width="400">
     </template>
-    <vs-sidebar-item id="home">
-      <template #icon>
-        <a-icon type="home" />
-      </template>
-      Home
-    </vs-sidebar-item>
-    <vs-sidebar-item id="activities">
-      <template #icon>
-        <a-icon type="unordered-list" />
-      </template>
-      Mis Actividades
-    </vs-sidebar-item>
-    <vs-sidebar-item id="projects">
-      <template #icon>
-        <a-icon type="project" />
-      </template>
-      Proyectos
-    </vs-sidebar-item>
-    <vs-sidebar-group>
-      <template #header>
-        <vs-sidebar-item arrow>
+    <ul>
+      <li v-for="item of modules" :key="item.key">
+        <vs-sidebar-item v-if="!item.submodules" :id="item.key">
           <template #icon>
-            <a-icon type="team" />
+            <a-icon :type="item.icon" />
           </template>
-          Mi Equipo
+          <nuxt-link :to="`/${item.key}`">
+            {{ item.label }}
+          </nuxt-link>
         </vs-sidebar-item>
-      </template>
-      <vs-sidebar-item id="assistControl">
-        <template #icon>
-          <a-icon type="control" />
-        </template>
-        Control de Asistencia
-      </vs-sidebar-item>
-      <vs-sidebar-item id="followAssignments">
-        <template #icon>
-          <a-icon type="monitor" />
-        </template>
-        Seguimiento de Actividades
-      </vs-sidebar-item>
-    </vs-sidebar-group>
-    <vs-sidebar-group>
-      <template #header>
-        <vs-sidebar-item arrow>
-          <template #icon>
-            <a-icon type="setting" />
+        <vs-sidebar-group v-else>
+          <template #header>
+            <vs-sidebar-item arrow>
+              <template #icon>
+                <a-icon :type="item.icon" />
+              </template>
+              {{ item.label }}
+            </vs-sidebar-item>
           </template>
-          Configuración
-        </vs-sidebar-item>
-      </template>
-      <vs-sidebar-item id="workTeams">
-        <template #icon>
-          <a-icon type="usergroup-add" />
-        </template>
-        Equipos de Trabajo
-      </vs-sidebar-item>
-      <vs-sidebar-item id="employes">
-        <template #icon>
-          <a-icon type="solution" />
-        </template>
-        Empleados
-      </vs-sidebar-item>
-    </vs-sidebar-group>
+          <ul>
+            <li v-for="subItem of item.submodules" :key="subItem.key">
+              <vs-sidebar-item :id="subItem.key">
+                <template #icon>
+                  <a-icon :type="subItem.icon" />
+                </template>
+                <nuxt-link :to="`/${item.key}/${subItem.key}`">
+                  {{ subItem.label }}
+                </nuxt-link>
+              </vs-sidebar-item>
+            </li>
+          </ul>
+        </vs-sidebar-group>
+      </li>
+    </ul>
   </vs-sidebar>
 </template>
 
@@ -72,6 +44,32 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  data: () => ({
+    modules: [
+      {
+        key: 'teams',
+        label: 'Mis Equipos',
+        icon: 'team',
+        submodules: [
+          {
+            key: 'followAssignments',
+            label: 'Seguimiento de Actividades',
+            icon: 'monitor',
+          },
+          {
+            key: 'assistControl',
+            label: 'Control de Asistencia',
+            icon: 'control',
+          },
+        ]
+      },
+      {
+        key: 'projects',
+        label: 'Proyectos',
+        icon: 'project',
+      },
+    ],
+  }),
   computed: {
     activar: {
       set () {
