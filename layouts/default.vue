@@ -42,6 +42,9 @@ export default Vue.extend({
         ? '260px'
         : '0px'
     },
+  },
+  mounted () {
+    this.$vs.setColor('primary', '#b094ec')
   }
 })
 </script>

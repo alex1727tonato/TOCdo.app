@@ -34,7 +34,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/ant-desing.js' },
-    { src: '@/plugins/vuesax.ts', ssr: false },
+    { src: '@/plugins/vuesax.ts' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
