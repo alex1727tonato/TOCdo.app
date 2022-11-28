@@ -18,6 +18,18 @@
               @submit.prevent="onSubmit"
             >
               <a-form-model-item
+                label="RUC"
+                html-for="ruc"
+                prop="ruc"
+                :rules="{ required: true, message: 'El campo es requerido' }"
+              >
+                <a-input
+                  id="ruc"
+                  v-model="form.ruc"
+                  placeholder="Ingrese el RUC de la empresa"
+                />
+              </a-form-model-item>
+              <a-form-model-item
                 label="Usuario"
                 html-for="username"
                 prop="username"
@@ -79,6 +91,7 @@ export default Vue.extend({
   layout: 'empty',
   data: () => ({
     form: {
+      ruc: '',
       username: '',
       password: '',
     }
